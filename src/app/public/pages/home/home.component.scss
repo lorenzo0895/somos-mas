@@ -1,0 +1,56 @@
+.section-welcome {
+  margin: auto;
+  max-width: 1200px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.description-section {
+  padding: 24px 10%;
+}
+.decription {
+  padding-top: 24px;
+  font-weight: normal;
+}
+h2 {
+  color: var(--primary-text);
+  padding-bottom: 12px;
+}
+
+.section-campaign{
+  .container-campaign{
+    display: flex;
+    gap: 120px;
+    padding: 30px 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    .card{
+      background-color: white;
+      box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+      .logo{
+        width: 200px;
+        height: 200px;
+        object-fit: contain;
+      }
+    }
+  }
+}
+  
+@media screen and (min-width: 992px) {
+  .section-campaign{
+    .container-campaign{
+      .card{
+        .logo{
+          width: 300px;
+          height: 300px;
+        }
+        &:hover{
+          box-shadow: 0 30px 60px 0 rgba(0, 60, 255, 0.3);
+          transition: all 0.5s ease-out;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+<app-dialog></app-dialog>
+<app-progress-bar [isLoading]="isLoading"></app-progress-bar>
+<app-image-curved
+  url="https://www.consumer.es/app/uploads/2019/07/img_juegos-solidarios.jpg"
+  title="Actividades"
+  [text]="'Buscá alguna actividad'"
+  [opacity]="0.2"
+>
+</app-image-curved>
+<app-input-search (searched)="search($event)"></app-input-search>
+<div class="container-fluid fadeIn first">
+    <section>
+        <div *ngIf="filteredActivities.length" class="activities-info">
+            <h2>Conocé más de nuestras actividades</h2>
+        </div>
+        <div *ngIf="!filteredActivities.length" class="activities-info">
+            <h2>No hay nada para mostrar</h2>
+        </div>
+    </section>
+    <section>
+        <app-spinner *ngIf="spinnerService.loading$ | async"></app-spinner>
+        <div class="activities-list" *ngIf="filteredActivities">
+            <app-card routerLink="/actividades/{{activity.id}}" *ngFor="let activity of filteredActivities" 
+                      title={{activity.name}} 
+                      description={{activity.description}} 
+                      imageSrc={{activity.image}}></app-card>                        
+        </div>
+        <div class="activities-loadmore" *ngIf="itemCount <= activities.length">
+           <button class="btn btn-primary" (click)="fillArray()">Ver más</button> 
+        </div>                
+    </section>    
+</div>

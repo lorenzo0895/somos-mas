@@ -1,0 +1,168 @@
+<div class="container fadeInDown" id="formContent">
+  <header class="header">
+    <app-logo [width]="200" [margin]="60"></app-logo>
+    <h1>Registro de usuario</h1>
+  </header>
+  <main>
+    <form [formGroup]="form">
+      <div class="field">
+        <label for="name" class="block">Nombre</label>
+        <input
+          formControlName="name"
+          id="name"
+          type="name"
+          aria-describedby="name-help"
+          [ngClass]="{ 'ng-invalid ng-dirty': name?.touched && name?.errors }"
+          pInputText
+        />
+        <small
+          *ngIf="name?.touched && name?.errors"
+          id="name-help"
+          class="p-error block"
+          >error en el campo nombre.</small
+        >
+      </div>
+
+      <div class="field">
+        <label for="email" class="block">Email</label>
+        <input
+          formControlName="email"
+          id="email"
+          type="email"
+          aria-describedby="email-help"
+          [ngClass]="{ 'ng-invalid ng-dirty': email?.touched && email?.errors }"
+          pInputText
+        />
+        <small
+          *ngIf="email?.touched && email?.errors"
+          id="email-help"
+          class="p-error block"
+          >Debe ingresar un email válido.</small
+        >
+      </div>
+
+      <div class="field">
+        <label for="password1" class="block">Contraseña</label>
+        <input
+          formControlName="password1"
+          id="password1"
+          type="password"
+          aria-describedby="password1-help"
+          [ngClass]="{
+            'ng-invalid ng-dirty': password1?.touched && password1?.errors
+          }"
+          pInputText
+        />
+        <small
+          *ngIf="password1?.touched && password1?.hasError('required')"
+          id="password1-help"
+          class="p-error block"
+          >Debe ingresar una contraseña.</small
+        >
+        <small
+          *ngIf="
+            password1?.touched &&
+            !password1?.hasError('required') &&
+            password1?.errors?.minlength
+          "
+          id="password1-help"
+          class="p-error block"
+          >La contraseña debe tener como mínimo 6 caracteres.</small
+        >
+        <small
+          *ngIf="
+            password1?.touched &&
+            !password1?.hasError('required') &&
+            password1?.errors?.notPattern
+          "
+          id="password1-help"
+          class="p-error block"
+          >La contraseña debe contener al menos 1 letra, 1 número y 1
+          símbolo.</small
+        >
+      </div>
+
+      <div class="field">
+        <label for="password2" class="block">Confirmar contraseña</label>
+        <input
+          formControlName="password2"
+          id="password2"
+          type="password"
+          aria-describedby="password2-help"
+          [ngClass]="{
+            'ng-invalid ng-dirty': password2?.touched && password2?.errors
+          }"
+          pInputText
+        />
+        <small
+          *ngIf="password2?.touched && password2?.hasError('required')"
+          id="password2-help"
+          class="p-error block"
+          >Debe repetir la contraseña.</small
+        >
+        <small
+          *ngIf="password2?.touched && password2?.errors?.notEqual"
+          id="password2-help"
+          class="p-error block"
+          >Las contraseñas no coinciden.</small
+        >
+      </div>
+
+      <div class="map-field">
+        <label for="address" class="block">Dirección</label>
+        <div class="map-container">
+          <google-map
+            id="address"
+            height="300px"
+            [zoom]="4"
+            width="100%"
+            [options]="mapOptions"
+            (mapClick)="addMarker($event)"
+          >
+            <map-marker [position]="markerPosition!"> </map-marker>
+          </google-map>
+        </div>
+        <small
+          *ngIf="address?.hasError('required')"
+          id="password1-help"
+          class="p-error block"
+          >Debe marcar una dirección en el mapa.
+        </small>
+      </div>
+      <div
+        (click)="hide = false"
+        class="row d-flex align-items-center justify-content-center"
+      >
+        <div *ngIf="accept; then checked; else empty"></div>
+        <ng-template #checked>
+          <input type="checkbox" id="flexCheckChecked" checked />
+        </ng-template>
+        <ng-template #empty>
+          <input type="checkbox" id="flexCheckChecked" />
+        </ng-template>
+        <a (click)="hide = false">leer <strong>Terminos y condiciones</strong></a>
+      </div>
+      <button
+        (click)="register($event)"
+        pButton
+        pRipple
+        type="button"
+        label="Registrarse"
+        class="primary"
+      ></button>
+      <a routerLink="/login">Ingresar</a>
+    </form>
+  </main>
+</div>
+
+<div *ngIf="hide; else show"></div>
+<ng-template #show>
+  <div id="pdf" class="row justify-content-center align-items-center">
+    <div class="col col-sm-8">
+      <app-termsandconditions
+        (accept)="accept = $event"
+        (hide)="hide = $event"
+      ></app-termsandconditions>
+    </div>
+  </div>
+</ng-template>

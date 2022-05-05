@@ -1,0 +1,138 @@
+<nav class="navbar navbar-expand-lg navbar-light fadeInDown">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="home">
+      <app-logo [width]="100"></app-logo>
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-lg-0">
+        <li class="nav-item">
+          <a
+            data-bs-target=".navbar-collapse.show"
+            data-bs-toggle="collapse"
+            class="underlineHover"
+            type="button"
+            routerLink="home"
+            >Inicio</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            data-bs-target=".navbar-collapse.show"
+            data-bs-toggle="collapse"
+            class="underlineHover"
+            type="button"
+            routerLink="nosotros"
+            >Nosotros</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            data-bs-target=".navbar-collapse.show"
+            data-bs-toggle="collapse"
+            class="underlineHover"
+            type="button"
+            routerLink="/actividades"
+            >Actividades</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            data-bs-target=".navbar-collapse.show"
+            data-bs-toggle="collapse"
+            class="underlineHover"
+            type="button"
+            routerLink="contacto"
+            >Contacto</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            data-bs-target=".navbar-collapse.show"
+            data-bs-toggle="collapse"
+            class="underlineHover"
+            type="button"
+            routerLink="donar"
+            >Contribuye</a
+          >
+        </li>
+        <!-- DROPMENU -->
+        <li class="dropBox nav-item">
+          <a class="underlineHover" >Campañas</a>
+          <!-- DROPDOWN MENU -->
+          <ul class="dropdown">
+            <li class="nav-item">
+              <a aria-current="page"
+              data-bs-toggle="collapse"
+              routerLink="school-campaign"
+              data-bs-target=".navbar-collapse.show">Campaña Escolar</a>
+            </li>
+            <li class="nav-item">
+              <a aria-current="page"
+              routerLink="toys-campaign"
+              data-bs-toggle="collapse"
+              data-bs-target=".navbar-collapse.show">Campaña Juegues</a>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item" *ngIf="(userLoged$ | async)?.role_id == 1 || (userLoged$ | async)?.role_id == 2">
+          <a
+            data-bs-target=".navbar-collapse.show"
+            data-bs-toggle="collapse"
+            class="underlineHover"
+            type="button"
+            routerLink="backoffice"
+            >Gestión</a
+          >
+        </li>
+      </ul>
+      <div class="d-flex" *ngIf="!(userLoged$ | async)">
+        <button
+          class="me-1 mb-1 warning"
+          aria-current="page"
+          data-bs-toggle="collapse"
+          data-bs-target=".navbar-collapse.show"
+          label="Log in"
+          pButton
+          pRipple
+          type="button"
+          routerLink="login"
+        ></button>
+        <button *ngIf="(userLoged$ | async)?.role_id == 1 || (userLoged$ | async)?.role_id == 2"
+          aria-current="page"
+          data-bs-toggle="collapse"
+          data-bs-target=".navbar-collapse.show"
+          class="primary mb-1"
+          label="Registrate"
+          pButton
+          pRipple
+          type="button"
+          routerLink="registro"
+        ></button>
+      </div>
+      <div *ngIf="isLogged">
+        <button
+          class="me-1 mb-1 warning"
+          aria-current="page"
+          data-bs-toggle="collapse"
+          data-bs-target=".navbar-collapse.show"
+          label="Log out"
+          pButton
+          pRipple
+          type="button"
+          (click)="logOut()"
+        ></button>
+      </div>
+    </div>
+  </div>
+</nav>

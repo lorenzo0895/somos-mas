@@ -1,0 +1,41 @@
+.container {
+  width: 450px;
+  max-width: 95%;
+}
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+h1 {
+  text-align: center;
+  margin-bottom: 40px;
+  width: 60%;
+}
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  input {
+    width: -webkit-fill-available;
+  }
+  hr{
+    color: #000000;
+    width: inherit;
+  }
+  p{
+    margin: 0;
+    padding: 0;
+  }
+}
+.field {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+button {
+  margin: 20px 0 10px 0;
+}

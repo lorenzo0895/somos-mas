@@ -1,0 +1,34 @@
+/* STRUCTURE */
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  min-height: 100%;
+  padding: 20px 20px 20px 20px;
+}
+
+form {
+  padding: 30px;
+  span {
+    margin-top: 30px;
+    input {
+      width: -webkit-fill-available;
+    }
+  }
+  .img-actual{
+    height: auto;
+    max-width: 100px;
+  }
+}
+.field {
+  label {
+    margin: 10px;
+  }
+}
+.p-button.p-button-icon-only {
+  width: 5rem;
+  padding: 0;
+}

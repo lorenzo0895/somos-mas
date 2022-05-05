@@ -1,0 +1,46 @@
+.description-section {
+  padding: 24px 10%;
+  margin: 0;
+}
+
+.decription {
+  padding-top: 24px;
+}
+h2 {
+  color: var(--primary-text);
+  padding-bottom: 12px;
+}
+
+.tw-container {
+  width: 50%;
+}
+
+h3 {
+  font-size: 35px;
+}
+
+.section-tweets{  
+  padding: 24px 0;
+}
+
+.title-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .about-text {
+    font-size: 30px;
+  }
+}
+
+.wrapper{
+  display: flex;
+  gap: 30px;
+  padding: 30px 10px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}

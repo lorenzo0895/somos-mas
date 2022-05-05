@@ -1,0 +1,70 @@
+<div class="container mt-4">
+    <div class="col-12 col-sm-12 col-md-10 col-lg-6 mx-auto fadeIn">
+        <div id="formContent">
+            <img src="../../../../../assets/images/logo.png" alt="logo"/>
+            <h2 class="text-center">{{actionType}} novedad</h2>
+            <form [formGroup]="newsForm">
+                <div class="mb-1 mt-3">
+                    <div class="field mb-2">
+                        <label for="name" class="block">Título</label>                    
+                        <input id="name" type="text" formControlName="name" aria-describedby="name-help" [ngClass]="{ 'ng-invalid ng-dirty': name?.touched && name?.invalid }" pInputText />
+                        <small *ngIf="name?.touched && name?.invalid" id="name" class="p-error block">Debe ingresar un título válido.</small>
+                    </div>
+                    <div class="field mb-2">
+                        <label for="content" class="block">Contenido</label>
+                        <ckeditor class="form-control" formControlName="content" rows="2" pInputText [ngClass]="{ 'ng-invalid ng-dirty': content?.touched && content?.invalid }"></ckeditor>
+                        <div *ngIf="content.invalid && content.touched" class="p-error block">
+                            <small>Debe ingresar un contenido válido.</small>
+                        </div>
+                    </div>                
+                    <!-- IMAGE -->
+                    <div class="field">
+                        <label for="image">Imagen</label>
+                        <div *ngIf="news != null || uploadedFile != null">
+                            <div>
+                                <img [src]="image.value" height="200"/>
+                            </div>
+                            <small id="logo-text" class="block">
+                                Para modificar la imagen seleccione un nuevo
+                                archivo.
+                            </small>
+                        </div>
+                        <p-fileUpload id="image" [customUpload]="true" name="category-image" (uploadHandler)="onUpload($event)" [multiple]="false" accept="image/*.jpg image/*.png" [maxFileSize]="maxFileSize">
+                            <ng-template *ngIf="news == null" pTemplate="content">
+                                <ul>
+                                    <li *ngIf="uploadedFile != null && !image">{{uploadedFile.name}} - {{uploadedFile.size}} bytes</li>
+                                </ul>
+                            </ng-template>
+                        </p-fileUpload>
+                        <small *ngIf="image.invalid" id="image-help" class="p-error block">
+                            Debe añadir una imagen.
+                        </small>
+                    </div>
+                </div>      
+            </form>
+
+            <div class="mb-2">
+                <label>Categoría</label>
+                <p-dropdown [options]="categories" [(ngModel)]="selectedCategory" name="category" class="field" optionLabel="name" [filter]="true" filterBy="name" [showClear]="true" [ngClass]="{ 'ng-invalid ng-dirty':selectedCategory == null }" placeholder="Seleccionar una categoría">
+                    <ng-template pTemplate="selectedItem">
+                        <div *ngIf="selectedCategory">
+                            {{selectedCategory.name}}                  
+                        </div>
+                    </ng-template>
+                    <ng-template let-selectedCategory pTemplate="item">
+                        <div class="country-item">
+                            {{selectedCategory.name}}                                      
+                        </div>
+                    </ng-template>
+                </p-dropdown>
+                <div *ngIf="selectedCategory == null" class="p-error block mt-2">
+                    <small>Debe seleccionar una categoría</small>
+                </div>
+            </div>
+
+            <div class="d-grid gap-2 col-4 mx-auto mt-2">                
+                <button pButton pRipple type="button" (click)="sendNews()" [label]="buttonAction" class="primary" [disabled]="!newsForm.valid || selectedCategory == null"></button>
+            </div>
+        </div>
+    </div>
+</div>

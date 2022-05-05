@@ -1,0 +1,35 @@
+section {
+  width: 100%;
+  display: contents;
+}
+.portada {
+  background-size: cover;
+}
+
+$carousel-transition-duration: 0.5s;
+$carousel-control-prev-icon-bg: url("../../../../assets/icons/arrow-left-circle.svg");
+$carousel-control-next-icon-bg: url("../../../../assets/icons/arrow-right-circle.svg");
+
+.carousel-control-next-icon {
+  background-image: $carousel-control-next-icon-bg;
+}
+
+.carousel-control-prev-icon {
+  background-image: $carousel-control-prev-icon-bg;
+}
+
+.content_wrapper {
+  align-items: flex-start;
+  align-content: flex-start;
+  max-width: 1400px;
+  margin: auto;
+  #carouselId .carousel-item {
+    .carousel-caption {
+      left: 4%;
+      top: 30%;
+      transform: translateY(40%);
+      text-align: left;
+      bottom: initial;
+    }
+  }
+}

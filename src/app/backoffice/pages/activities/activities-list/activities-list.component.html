@@ -1,0 +1,7 @@
+<app-table
+  [items]="tableActivities"
+  [columns]="titlesCol"
+  (deleteItemById)="deleteActivity($event)"
+  (keyword)="debounce($event)"
+  [isLoading]="isLoading"
+></app-table>
